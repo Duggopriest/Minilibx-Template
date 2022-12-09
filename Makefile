@@ -1,6 +1,4 @@
 NAME = minilibx_template.out
-
-
 INC = includes
 SRC = src/*.c
 
@@ -14,7 +12,7 @@ all:
 	@echo -n Compiling Libs...
 	@make -s -C $(LIBX)
 	@echo Done
-	@echo -n Compiling so_long...
+	@echo -n Compiling project...
 	@gcc $(SRC) $(FLAGS) -o $(NAME)
 	@echo Done
 
@@ -23,14 +21,13 @@ run:
 	@echo -n Compiling Libs...
 	@make -s -C $(LIBX)
 	@echo Done
-	@echo -n Compiling so_long...
+	@echo -n Compiling project...
 	@gcc $(SRC) $(FLAGS) -o $(NAME)
 	@echo Done
 	@echo Running...
 	@echo press esc to exit
 	@./$(NAME)
 	@echo .
-
 
 git:
 	@clear

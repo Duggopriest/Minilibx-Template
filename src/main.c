@@ -1,58 +1,42 @@
 #include "../includes/header.h"
 
-
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+int	render_next_frame(t_container *container)
 {
-	char	*dst;
+	(void)container; // ignore this
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
-
-int	keypress(int key_id, void	*your_var)
-{
-	printf("key pressed id is = %d\n", key_id);
-	if (key_id == 65307 || key_id == 53)
-		exit(1);//exits game
-
-	your_var = NULL; // ignore this
+	// this will be your main loop for what goes on every frame of the program
 	
-	return (0);
-}
-
-int	render_next_frame(void *your_var)
-{
-	// draw next frame
-	your_var = NULL; // ignore this
-
 	return (0);
 }
 
 int	main(void)
 {
-	void	*mlx;
-	void	*mlx_win;
-	t_data	img;
+	t_container container; // this is a struct we use to hold all the variables that we use. this makes it easier to assess vars from multiable places
 
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
+	// we initlise mlx and create a window setting the size and name
+	container.mlx = mlx_init();
+	container.mlx_win = mlx_new_window(container.mlx, 1920, 1080, "Hello world!");
 
+	// ========================== demos ===================================
 
-	// ========================================================== img
-	img.img = mlx_new_image(mlx, 1920, 1080); // makes new img
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian); // generates address data
+	// drawing pixels
+	draw_pixel_demo(&container);
 
-	my_mlx_pixel_put(&img, 5, 5, 0x00FF0000); // draws a pixel to the img at x and y then we put in a hex color
+	// importting images
+	import_img_demo(&container);
 
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0); // draws img to the mlx window and the location to draw it at. here we just draw at top left (0,0)
+	// keyboard input
+	// 							 		v this function everytime you press a key
+	mlx_key_hook(container.mlx_win, key_press, &container);
 
-	// ========================================================== keyboard input
-	void	*your_var = NULL; // this can be what ever you want. struct recommended 
-	mlx_key_hook(mlx_win, keypress, your_var);
+	// mouse input
+	// 							 		v this function everytime you press a button on the mouse
+	mlx_mouse_hook(container.mlx, mouse_press, &container);
 
-	// ========================================================== makes mlx loop over to draw new frames
-	//void	*your_var; this can be what ever you want. struct recommended 
-	mlx_loop_hook(mlx, render_next_frame, your_var);
+	// =====================================================================
 
-	mlx_loop(mlx);
+	// 				this will run 		v this function every frame
+	mlx_loop_hook(container.mlx, render_next_frame, &container);
+
+	mlx_loop(container.mlx); // this keeps the window open
 }
