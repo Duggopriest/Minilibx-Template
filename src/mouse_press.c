@@ -10,6 +10,7 @@ void    mouse_demo(t_container *container)
     mlx_mouse_get_pos(container->mlx_win, &x, &y);
 }
 
+// this function runs everytime a mouse button is pressed
 int    mouse_press(int button, int x, int y, t_container *container)
 {
     printf("mouse x(%d) y(%d) button(%d)\n", x, y, button);

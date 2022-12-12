@@ -31,7 +31,7 @@ int	main(void)
 
 	// mouse input
 	// 							 		v this function everytime you press a button on the mouse
-	mlx_mouse_hook(container.mlx, mouse_press, &container);
+	mlx_mouse_hook(container.mlx_win, mouse_press, &container);
 
 	// =====================================================================
 
