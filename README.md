@@ -7,4 +7,4 @@ A template to help you get started with your 2D/3D Game.
 
 
 ### 3D Game Example
-![68747470733a2f2f692e696d6775722e636f6d2f6d5254615567762e706e67](https://user-images.githubusercontent.com/58959408/206984418-cdaa3de2-ee64-46c8-9541-30d3b3975b5d.png)
+![155116616-824e5a4e-7dc2-4e6b-8d00-5d22e57d7c2c](https://user-images.githubusercontent.com/58959408/206985041-2da7af92-994d-439f-aff9-ad49b5ec2095.gif)
